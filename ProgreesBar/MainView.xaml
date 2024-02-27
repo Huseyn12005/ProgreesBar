@@ -5,8 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProgreesBar"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
+        Title="ProgressBar" Height="450" Width="800">
     <Grid>
-        
+        <Label Content="From"  VerticalAlignment="Top" Margin="25 100 10 0" FontSize="25"  FontWeight="Bold" />
+        <TextBox Name="FromFileBox" Height="40" FontSize="15" Width="470" Margin="5 100 15 0" Padding="5 7 5 0" VerticalAlignment="Top" 
+   BorderThickness="2" FontWeight="Bold" Background="White" />
+
+        <Button Height="35" Width="100"  Content="File..." Foreground="White" FontSize="16" FontWeight="DemiBold" VerticalAlignment="Top" HorizontalAlignment="Right" Background="Gray" BorderBrush="Black" Command="{Binding FromFileCommand}" Margin="0 100 20 0"/>
+
+        <Label Content="To"  VerticalAlignment="Top" Margin="25 200 10 0" FontSize="25"  FontWeight="Bold"  />
+        <TextBox Name="ToFileBox" Height="40" FontSize="15" Width="470" Margin="5 200 15 0" Padding="5 7 5 0" VerticalAlignment="Top" 
+   BorderThickness="2" FontWeight="Bold" Background="White" />
+
+        <Button Height="35" Width="100"  Content="File . . ." Foreground="White" FontSize="16" FontWeight="DemiBold" 
+  VerticalAlignment="Top" HorizontalAlignment="Right" Background="Gray"  Command="{Binding ToFileCommand}" Margin="0 200 20 0" />
+
+        <ProgressBar x:Name="PbFile" Style="{x:Null}" Minimum="0" Maximum="{Binding MaxLen}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20 300 0 0" Height="40" Width="300"
+  Background="White" Value="0" Foreground="Green"/>
+
+        <Button Height="40" Width="90" x:Name="Suspend" Content="Suspend" Foreground="White" Background="Gray" FontSize="16" 
+  VerticalAlignment="Center"   Command="{Binding SuspendCommand}"  Margin="0 200 0 0" IsEnabled="False"/>
+
+        <Button Height="40" Width="90" x:Name="Resume" Content="Resume" Foreground="White" Background="Gray" FontSize="16" 
+  VerticalAlignment="Center"   Command="{Binding ResumeCommand}"  Margin="200 200 0 0" IsEnabled="False"/>
+
+        <Button Height="40" Width="90" x:Name="Abort" Content="Abort" Foreground="White" Background="Gray" FontSize="16" 
+ VerticalAlignment="Center"   Command="{Binding AbortCommand}"  Margin="400 200 0 0" IsEnabled="False"/>
+
+        <Button Height="40" Width="90" x:Name="Copy" Content="Copy" Foreground="White" Background="Gray" FontSize="16" 
+ VerticalAlignment="Center"   Command="{Binding CopyCommand}"  Margin="600 200 0 0" IsEnabled="False"/>
+
     </Grid>
 </Window>
