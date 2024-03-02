@@ -1,11 +1,11 @@
-﻿<Window x:Class="ProgreesBar.MainView"
+﻿<Window x:Class="ProgresBar.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProgreesBar"
+        xmlns:local="clr-namespace:ProgresBar"
         mc:Ignorable="d"
-        Title="ProgressBar" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="From"  VerticalAlignment="Top" Margin="25 100 10 0" FontSize="25"  FontWeight="Bold" />
         <TextBox Name="FromFileBox" Height="40" FontSize="15" Width="470" Margin="5 100 15 0" Padding="5 7 5 0" VerticalAlignment="Top" 

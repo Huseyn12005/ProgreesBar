@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using ProgreesBar.Command;
 using ProgreesBar.Service;
+using ProgresBar;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,7 +17,7 @@ namespace ProgreesBar
 {
     public class MainViewModel : NotificationService
     {
-        public MainView MainView { get; set; }
+        public MainWindow MainView { get; set; }
         Thread thread;
 
         private double _maxLen;
@@ -33,29 +34,29 @@ namespace ProgreesBar
             }
         }
 
-        private double _incValue;
-        public double IncValue
+        private double _pbValue;
+        public double pbValue
         {
-            get { return _incValue; }
+            get { return _pbValue; }
             set
             {
-                if (_incValue != value)
+                if (_pbValue != value)
                 {
-                    _incValue = value;
+                    _pbValue = value;
                     OnPropertyChanged();
                 }
             }
         }
         public ICommand FromFileCommand { get; set; }
         public ICommand ToFileCommand { get; set; }
-        public ICommand CopyCommand { get; set; }
         public ICommand SuspendCommand { get; set; }
         public ICommand ResumeCommand { get; set; }
         public ICommand AbortCommand { get; set; }
+        public ICommand CopyCommand { get; set; }
 
-        public MainViewModel(MainView _MainView)
+        public MainViewModel(MainWindow introductionPage)
         {
-            MainView = _MainView;
+            MainView = introductionPage;
             MainView.PbFile.Foreground = Brushes.White;
 
             FromFileCommand = new RelayCommand(
@@ -113,18 +114,18 @@ namespace ProgreesBar
                                     {
                                         var length = stream.Length;
                                         MaxLen = stream.Length;
-                                        var readTemp = 10;
-                                        var buffer = new byte[readTemp];
+                                        var count = 10;
+                                        var buffer = new byte[count];
                                         do
                                         {
-                                            var data = stream.Read(buffer, 0, readTemp);
-                                            writeStream.Write(buffer, 0, readTemp);
-                                            length -= readTemp;
+                                            var data = stream.Read(buffer, 0, count);
+                                            writeStream.Write(buffer, 0, count);
+                                            length -= count;
                                             Application.Current.Dispatcher.Invoke(() =>
                                             {
-                                                IncValue += readTemp;
+                                                pbValue += count;
 
-                                                MainView.PbFile.Value = IncValue;
+                                                MainView.PbFile.Value = pbValue;
                                             });
                                             Thread.Sleep(1000);
                                         } while (length > 0);
